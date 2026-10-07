@@ -6,20 +6,15 @@ import de.if25b003.util.CrawlConfig;
 import de.if25b003.util.DataProcessHelper;
 import de.if25b003.util.LinkExtractor;
 import de.if25b003.util.VisitedRegistry;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class CrawlWorker implements Runnable {
     private final Node node;
     private final CrawlConfig config;
     private final LinkExtractor extractor;
     private final VisitedRegistry registry;
     private final CrawlEvents events = CrawlEvents.getInstance();
-
-    public CrawlWorker(Node node, CrawlConfig config, LinkExtractor extractor, VisitedRegistry registry) {
-        this.node = node;
-        this.config = config;
-        this.extractor = extractor;
-        this.registry = registry;
-    }
 
     @Override
     public void run() {

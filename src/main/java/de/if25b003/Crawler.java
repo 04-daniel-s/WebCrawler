@@ -6,19 +6,17 @@ import de.if25b003.util.CrawlConfig;
 import de.if25b003.util.DataProcessHelper;
 import de.if25b003.util.LinkExtractor;
 import de.if25b003.util.VisitedRegistry;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class Crawler {
     private final CrawlConfig config;
     private final LinkExtractor extractor = new LinkExtractor();
     private final VisitedRegistry registry = new VisitedRegistry();
     private final CrawlEvents events = CrawlEvents.getInstance();
-
-    public Crawler(CrawlConfig config) {
-        this.config = config;
-    }
 
     public Node crawl() throws InterruptedException {
         String start = DataProcessHelper.normalize(config.startUrl());

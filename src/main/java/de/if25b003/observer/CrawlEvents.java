@@ -1,14 +1,17 @@
 package de.if25b003.observer;
 
 import de.if25b003.model.Node;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CrawlEvents {
+
     private final List<CrawlListener> listeners;
 
-    private static CrawlEvents instance;
+    @Getter
+    private static final CrawlEvents instance = new CrawlEvents();
 
     public CrawlEvents() {
         listeners = new CopyOnWriteArrayList<>();
@@ -46,11 +49,4 @@ public class CrawlEvents {
         listeners.forEach(l -> l.onLevelFinished(d, lv, ms));
     }
 
-    public static CrawlEvents getInstance() {
-        if (instance == null) {
-            instance = new CrawlEvents();
-        }
-
-        return instance;
-    }
 }
